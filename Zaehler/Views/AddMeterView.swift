@@ -48,5 +48,6 @@ struct AddMeterView: View {
 struct AddMeterView_Previews: PreviewProvider {
     static var previews: some View {
         AddMeterView()
+            .environment(\.managedObjectContext, PersistenceController.shared.viewContext)
     }
 }

@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct MeterCardView: View {
+    
+    var name: String
+    var icon: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: icon)
+                Text(name)
+                Spacer()
+            }
+            .font(.title)
+        }
     }
 }
 
 struct MeterCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MeterCardView()
+        MeterCardView(name: "Elektro", icon: "powerplug")
     }
 }

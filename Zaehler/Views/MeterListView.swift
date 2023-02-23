@@ -51,5 +51,6 @@ struct MeterListView: View {
 struct MeterListView_Previews: PreviewProvider {
     static var previews: some View {
         MeterListView()
+            .environment(\.managedObjectContext, PersistenceController.shared.viewContext)
     }
 }
