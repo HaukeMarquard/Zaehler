@@ -13,7 +13,7 @@ struct ZaehlerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MeterListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

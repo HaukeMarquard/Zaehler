@@ -11,6 +11,10 @@ struct PersistenceController {
     static let shared = PersistenceController()
 
     let container: NSPersistentCloudKitContainer
+    
+    var viewContext: NSManagedObjectContext {
+        container.viewContext
+    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Zaehler")
@@ -23,5 +27,13 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func save() {
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving to CoreData: \(error)")
+        }
     }
 }

@@ -8,22 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		A8B6441F29A7C01200D1E349 /* ZaehlerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6441E29A7C01200D1E349 /* ZaehlerApp.swift */; };
-		A8B6442129A7C01200D1E349 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6442029A7C01200D1E349 /* ContentView.swift */; };
 		A8B6442329A7C01300D1E349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B6442229A7C01300D1E349 /* Assets.xcassets */; };
 		A8B6442629A7C01300D1E349 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B6442529A7C01300D1E349 /* Preview Assets.xcassets */; };
 		A8B6442829A7C01300D1E349 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6442729A7C01300D1E349 /* Persistence.swift */; };
 		A8B6442B29A7C01300D1E349 /* Zaehler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8B6442929A7C01300D1E349 /* Zaehler.xcdatamodeld */; };
+		A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443529A7C11100D1E349 /* MeterListView.swift */; };
+		A8B6443829A7C11A00D1E349 /* MeterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443729A7C11A00D1E349 /* MeterCardView.swift */; };
+		A8B6443A29A7C12800D1E349 /* AddMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443929A7C12800D1E349 /* AddMeterView.swift */; };
+		A8B6443F29A7C19800D1E349 /* Period+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443B29A7C19800D1E349 /* Period+CoreDataClass.swift */; };
+		A8B6444029A7C19800D1E349 /* Period+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443C29A7C19800D1E349 /* Period+CoreDataProperties.swift */; };
+		A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443D29A7C19800D1E349 /* Meter+CoreDataClass.swift */; };
+		A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6443E29A7C19800D1E349 /* Meter+CoreDataProperties.swift */; };
+		A8B6444429A7C34D00D1E349 /* AddMeterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A8B6441B29A7C01200D1E349 /* Zaehler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zaehler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B6441E29A7C01200D1E349 /* ZaehlerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZaehlerApp.swift; sourceTree = "<group>"; };
-		A8B6442029A7C01200D1E349 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A8B6442229A7C01300D1E349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8B6442529A7C01300D1E349 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A8B6442729A7C01300D1E349 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		A8B6442A29A7C01300D1E349 /* Zaehler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Zaehler.xcdatamodel; sourceTree = "<group>"; };
 		A8B6442C29A7C01300D1E349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8B6443529A7C11100D1E349 /* MeterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterListView.swift; sourceTree = "<group>"; };
+		A8B6443729A7C11A00D1E349 /* MeterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCardView.swift; sourceTree = "<group>"; };
+		A8B6443929A7C12800D1E349 /* AddMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeterView.swift; sourceTree = "<group>"; };
+		A8B6443B29A7C19800D1E349 /* Period+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A8B6443C29A7C19800D1E349 /* Period+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A8B6443D29A7C19800D1E349 /* Meter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meter+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A8B6443E29A7C19800D1E349 /* Meter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +70,10 @@
 		A8B6441D29A7C01200D1E349 /* Zaehler */ = {
 			isa = PBXGroup;
 			children = (
+				A8B6443429A7C10200D1E349 /* Models */,
+				A8B6443329A7C0FC00D1E349 /* ViewModels */,
+				A8B6443229A7C0F800D1E349 /* Views */,
 				A8B6441E29A7C01200D1E349 /* ZaehlerApp.swift */,
-				A8B6442029A7C01200D1E349 /* ContentView.swift */,
 				A8B6442229A7C01300D1E349 /* Assets.xcassets */,
 				A8B6442729A7C01300D1E349 /* Persistence.swift */,
 				A8B6442C29A7C01300D1E349 /* Info.plist */,
@@ -73,6 +89,35 @@
 				A8B6442529A7C01300D1E349 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A8B6443229A7C0F800D1E349 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A8B6443529A7C11100D1E349 /* MeterListView.swift */,
+				A8B6443729A7C11A00D1E349 /* MeterCardView.swift */,
+				A8B6443929A7C12800D1E349 /* AddMeterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A8B6443329A7C0FC00D1E349 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A8B6443429A7C10200D1E349 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8B6443B29A7C19800D1E349 /* Period+CoreDataClass.swift */,
+				A8B6443C29A7C19800D1E349 /* Period+CoreDataProperties.swift */,
+				A8B6443D29A7C19800D1E349 /* Meter+CoreDataClass.swift */,
+				A8B6443E29A7C19800D1E349 /* Meter+CoreDataProperties.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +191,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B6442829A7C01300D1E349 /* Persistence.swift in Sources */,
-				A8B6442129A7C01200D1E349 /* ContentView.swift in Sources */,
+				A8B6443A29A7C12800D1E349 /* AddMeterView.swift in Sources */,
+				A8B6444029A7C19800D1E349 /* Period+CoreDataProperties.swift in Sources */,
+				A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */,
+				A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */,
+				A8B6443F29A7C19800D1E349 /* Period+CoreDataClass.swift in Sources */,
 				A8B6441F29A7C01200D1E349 /* ZaehlerApp.swift in Sources */,
+				A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */,
+				A8B6443829A7C11A00D1E349 /* MeterCardView.swift in Sources */,
 				A8B6442B29A7C01300D1E349 /* Zaehler.xcdatamodeld in Sources */,
+				A8B6444429A7C34D00D1E349 /* AddMeterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

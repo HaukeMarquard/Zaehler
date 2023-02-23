@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Meter" representedClassName="Meter" syncable="YES">
+        <attribute name="icon" attributeType="String" defaultValueString=""/>
+        <attribute name="meterNumber" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Period" inverseName="meter" inverseEntity="Period"/>
     </entity>
-    <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-    </elements>
+    <entity name="Period" representedClassName="Period" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" defaultDateTimeInterval="698859900" usesScalarValueType="NO"/>
+        <attribute name="fixPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fixPriceInterval" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="unitPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unitType" optional="YES" attributeType="String"/>
+        <relationship name="meter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meter" inverseName="periods" inverseEntity="Meter"/>
+    </entity>
 </model>
