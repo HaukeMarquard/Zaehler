@@ -19,7 +19,12 @@ struct MeterListView: View {
             VStack(alignment: .leading) {
                 List {
                     ForEach(meters) { meter in
-                        Text(meter.name ?? "")
+                        NavigationLink {
+                            PeriodListView(meter: meter)
+                        } label: {
+                            Text(meter.name ?? "")
+                        }
+
                     }
                     .onDelete { indexSet in
                         print("Delete")

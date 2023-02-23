@@ -20,6 +20,12 @@ extension Meter {
     @NSManaged public var meterNumber: String?
     @NSManaged public var name: String?
     @NSManaged public var periods: NSSet?
+    
+    public var periodsArray: [Period] {
+        let set = periods as? Set<Period> ?? []
+        
+        return set.sorted { $0.startDate ?? Date() < $1.startDate ?? Date() }
+    }
 
 }
 
