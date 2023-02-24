@@ -22,6 +22,8 @@
 		A8B6444429A7C34D00D1E349 /* AddMeterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */; };
 		A8B6444629A7C67C00D1E349 /* PeriodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444529A7C67C00D1E349 /* PeriodListView.swift */; };
 		A8B6444829A7C78900D1E349 /* PeriodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444729A7C78900D1E349 /* PeriodListViewModel.swift */; };
+		A8B6444D29A88A5600D1E349 /* AddPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */; };
+		A8B6444F29A88A9C00D1E349 /* AddPeriodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444E29A88A9C00D1E349 /* AddPeriodViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeterViewModel.swift; sourceTree = "<group>"; };
 		A8B6444529A7C67C00D1E349 /* PeriodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodListView.swift; sourceTree = "<group>"; };
 		A8B6444729A7C78900D1E349 /* PeriodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodListViewModel.swift; sourceTree = "<group>"; };
+		A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeriodView.swift; sourceTree = "<group>"; };
+		A8B6444E29A88A9C00D1E349 /* AddPeriodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeriodViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +102,12 @@
 		A8B6443229A7C0F800D1E349 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A8B6444B29A8894000D1E349 /* Components */,
 				A8B6443529A7C11100D1E349 /* MeterListView.swift */,
 				A8B6443729A7C11A00D1E349 /* MeterCardView.swift */,
 				A8B6443929A7C12800D1E349 /* AddMeterView.swift */,
 				A8B6444529A7C67C00D1E349 /* PeriodListView.swift */,
+				A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -111,6 +117,7 @@
 			children = (
 				A8B6444329A7C34D00D1E349 /* AddMeterViewModel.swift */,
 				A8B6444729A7C78900D1E349 /* PeriodListViewModel.swift */,
+				A8B6444E29A88A9C00D1E349 /* AddPeriodViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -124,6 +131,13 @@
 				A8B6443E29A7C19800D1E349 /* Meter+CoreDataProperties.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A8B6444B29A8894000D1E349 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +213,7 @@
 				A8B6442829A7C01300D1E349 /* Persistence.swift in Sources */,
 				A8B6444829A7C78900D1E349 /* PeriodListViewModel.swift in Sources */,
 				A8B6443A29A7C12800D1E349 /* AddMeterView.swift in Sources */,
+				A8B6444F29A88A9C00D1E349 /* AddPeriodViewModel.swift in Sources */,
 				A8B6444029A7C19800D1E349 /* Period+CoreDataProperties.swift in Sources */,
 				A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */,
 				A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */,
@@ -209,6 +224,7 @@
 				A8B6444629A7C67C00D1E349 /* PeriodListView.swift in Sources */,
 				A8B6442B29A7C01300D1E349 /* Zaehler.xcdatamodeld in Sources */,
 				A8B6444429A7C34D00D1E349 /* AddMeterViewModel.swift in Sources */,
+				A8B6444D29A88A5600D1E349 /* AddPeriodView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

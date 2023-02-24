@@ -11,8 +11,12 @@ class PeriodListViewModel: ObservableObject {
     
     var meter: Meter?
     
+    @Published var periods: [Period] = [Period]()
+    
     func setMeter(meter: Meter) {
         self.meter = meter
+        
+        periods = meter.periodsArray
     }
     
 }

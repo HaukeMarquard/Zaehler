@@ -14,10 +14,33 @@ struct PeriodListView: View {
     @StateObject private var viewModel: PeriodListViewModel = PeriodListViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                viewModel.setMeter(meter: meter)
+        VStack {
+            List {
+                ForEach(viewModel.periods, id: \.objectID) { period in
+                    Text("\(period.startDate ?? Date()) - \(period.endDate ?? Date())")
+                }
             }
+        }
+        .onAppear {
+            viewModel.setMeter(meter: meter)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                addButton()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func addButton() -> some View {
+
+        NavigationLink {
+            AddPeriodView()
+        } label: {
+            Image(systemName: "plus.circle")
+                .font(.title3)
+        }
+        .padding([.vertical, .leading], 5)
     }
 }
 
