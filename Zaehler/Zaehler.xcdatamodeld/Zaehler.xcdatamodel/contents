@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Entry" representedClassName="Entry" syncable="YES" codeGenerationType="class">
+    <entity name="Entry" representedClassName="Entry" syncable="YES">
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="698918100" usesScalarValueType="NO"/>
         <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="period" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Period" inverseName="entries" inverseEntity="Period"/>
     </entity>
     <entity name="Meter" representedClassName="Meter" syncable="YES">
         <attribute name="icon" attributeType="String" defaultValueString=""/>
@@ -17,6 +18,7 @@
         <attribute name="startDate" attributeType="Date" defaultDateTimeInterval="698912220" usesScalarValueType="NO"/>
         <attribute name="unitPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unitType" optional="YES" attributeType="String"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="period" inverseEntity="Entry"/>
         <relationship name="meter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meter" inverseName="periods" inverseEntity="Meter"/>
     </entity>
 </model>
