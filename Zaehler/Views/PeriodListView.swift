@@ -35,7 +35,7 @@ struct PeriodListView: View {
     private func addButton() -> some View {
 
         NavigationLink {
-            AddPeriodView()
+            AddPeriodView(meter: meter)
         } label: {
             Image(systemName: "plus.circle")
                 .font(.title3)

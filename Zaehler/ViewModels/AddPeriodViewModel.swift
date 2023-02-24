@@ -28,8 +28,29 @@ class AddPeriodViewModel: ObservableObject {
     @Published var fixPriceInterval: FixPriceInterval = .monthly
     @Published var fixPrice: String = ""
     
+    var meter: Meter?
+    
     func setMeter(meter: Meter) {
+        self.meter = meter
+    }
+    
+    func savePeriod() {
+        createNewPeriod()
+    }
+    
+    func createNewPeriod() {
+        let newPeriod = Period(context: PersistenceController.shared.viewContext)
+        newPeriod.startDate = startDate
+        newPeriod.endDate = endDate
+        newPeriod.unitPrice = Double(unitPrice) ?? 0.0
+        newPeriod.unitType = unitType.rawValue
+        newPeriod.fixPriceInterval = fixPriceInterval.rawValue
+        newPeriod.fixPrice = Double(fixPrice) ?? 0.0
         
+        meter?.addToPeriods(newPeriod)
+        
+        
+        PersistenceController.shared.save()
     }
     
 //    func setFixPriceInterval(_ interval: FixPriceInterval) {

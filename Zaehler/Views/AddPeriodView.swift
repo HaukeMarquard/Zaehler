@@ -11,7 +11,9 @@ struct AddPeriodView: View {
     
     @StateObject var viewModel: AddPeriodViewModel = AddPeriodViewModel()
     
-//    private var meter: Meter
+    @Environment(\.dismiss) var dismiss
+    
+    var meter: Meter
     
     @State private var containsFixPrice: Bool = true
     
@@ -52,7 +54,8 @@ struct AddPeriodView: View {
             }
             HStack(alignment: .center) {
                 Button {
-                    
+                    viewModel.savePeriod()
+                    dismiss()
                 } label: {
                     Text("Add Period")
                 }
@@ -61,13 +64,13 @@ struct AddPeriodView: View {
             }
         }
         .onAppear {
-//            viewModel.setMeter(meter: meter)
+            viewModel.setMeter(meter: meter)
         }
     }
 }
 
-struct AddPeriodView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddPeriodView()
-    }
-}
+//struct AddPeriodView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddPeriodView()
+//    }
+//}
