@@ -15,6 +15,8 @@ class PeriodDetailViewModel: ObservableObject {
     
     func setPeriod(period: Period) {
         self.period = period
+        
+        entries = period.entriesArray
     }
     
 }

@@ -17,7 +17,12 @@ struct PeriodListView: View {
         VStack {
             List {
                 ForEach(viewModel.periods, id: \.objectID) { period in
-                    Text("\(period.startDate ?? Date()) - \(period.endDate ?? Date())")
+                    NavigationLink {
+                        PeriodDetailView(period: period)
+                    } label: {
+                        Text("\(period.startDate ?? Date()) - \(period.endDate ?? Date())")
+                    }
+
                 }
             }
         }

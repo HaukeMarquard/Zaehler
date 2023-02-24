@@ -54,7 +54,7 @@ struct PeriodDetailView: View {
     private func addButton() -> some View {
 
         NavigationLink {
-//            AddEntryView()
+            AddEntryView(period: period)
         } label: {
             Image(systemName: "plus.circle")
                 .font(.title3)
