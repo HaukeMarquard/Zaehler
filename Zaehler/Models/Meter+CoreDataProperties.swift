@@ -26,6 +26,13 @@ extension Meter {
         
         return set.sorted { $0.startDate ?? Date() < $1.startDate ?? Date() }
     }
+    
+    public func getActuralPeriod() -> Period? {
+
+        let period = self.periodsArray.first { $0.startDate ?? Date() <= Date() && $0.endDate ?? Date() >= Date() }
+
+        return period
+    }
 
 }
 
@@ -47,5 +54,5 @@ extension Meter {
 }
 
 extension Meter : Identifiable {
-
+    
 }

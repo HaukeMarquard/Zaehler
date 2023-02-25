@@ -19,13 +19,13 @@ class AddEntryViewModel: ObservableObject {
     }
     
     func saveEntry() {
-        var newEntry = Entry(context: PersistenceController.shared.viewContext)
+        let newEntry = Entry(context: PersistenceController.shared.viewContext)
         newEntry.value = Double(value) ?? 0.0
         newEntry.date = date
         
         period?.addToEntries(newEntry)
         
-        try PersistenceController.shared.save()
+        PersistenceController.shared.save()
     }
     
 }

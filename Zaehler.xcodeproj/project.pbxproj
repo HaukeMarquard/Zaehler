@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A881C3C629A9273500EB7086 /* MeterCardWithoutPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */; };
+		A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */; };
 		A889E8AE29A8AC1700D0C6B7 /* PeriodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */; };
 		A889E8B029A8AD3300D0C6B7 /* PeriodDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8AF29A8AD3300D0C6B7 /* PeriodDetailViewModel.swift */; };
 		A889E8B729A8ADC200D0C6B7 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8B529A8ADC200D0C6B7 /* Entry+CoreDataClass.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCardWithoutPeriodView.swift; sourceTree = "<group>"; };
+		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailView.swift; sourceTree = "<group>"; };
 		A889E8AF29A8AD3300D0C6B7 /* PeriodDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailViewModel.swift; sourceTree = "<group>"; };
 		A889E8B529A8ADC200D0C6B7 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A881C3C729A92B4100EB7086 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A8B6441229A7C01200D1E349 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +102,7 @@
 		A8B6441D29A7C01200D1E349 /* Zaehler */ = {
 			isa = PBXGroup;
 			children = (
+				A881C3C729A92B4100EB7086 /* Extensions */,
 				A8B6443429A7C10200D1E349 /* Models */,
 				A8B6443329A7C0FC00D1E349 /* ViewModels */,
 				A8B6443229A7C0F800D1E349 /* Views */,
@@ -122,6 +135,7 @@
 				A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */,
 				A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */,
 				A889E8BD29A8AFC600D0C6B7 /* AddEntryView.swift */,
+				A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +252,8 @@
 				A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */,
 				A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */,
 				A8B6441F29A7C01200D1E349 /* ZaehlerApp.swift in Sources */,
+				A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */,
+				A881C3C629A9273500EB7086 /* MeterCardWithoutPeriodView.swift in Sources */,
 				A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */,
 				A889E8BE29A8AFC600D0C6B7 /* AddEntryView.swift in Sources */,
 				A8B6443829A7C11A00D1E349 /* MeterCardView.swift in Sources */,

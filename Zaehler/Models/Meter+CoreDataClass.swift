@@ -11,5 +11,5 @@ import CoreData
 
 @objc(Meter)
 public class Meter: NSManagedObject {
-
+    
 }

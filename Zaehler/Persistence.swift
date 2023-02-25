@@ -33,6 +33,7 @@ struct PersistenceController {
         do {
             try viewContext.save()
         } catch {
+            viewContext.rollback()
             print("Error saving to CoreData: \(error)")
         }
     }

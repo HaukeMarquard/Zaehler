@@ -28,7 +28,18 @@ extension Period {
     public var entriesArray: [Entry] {
         let set = entries as? Set<Entry> ?? []
         
-        return set.sorted { $0.date ?? Date() < $1.date ?? Date() }
+        return set.sorted { $0.date < $1.date }
+    }
+    
+    func getWholeConsumption() -> Double {
+        print(entriesArray)
+        print(self.entriesArray.count)
+        guard let first = entriesArray.first, let last = entriesArray.last else { return 0.0 }
+        
+        let sum = first.value - last.value
+        print("Sum of WholeConsumption: \(sum)")
+        return sum
+        
     }
 
 }

@@ -11,7 +11,7 @@ struct MeterListView: View {
     
     @Environment(\.managedObjectContext) var viewContext
     
-    @FetchRequest(sortDescriptors: [])
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     private var meters: FetchedResults<Meter>
     
     var body: some View {
@@ -19,18 +19,35 @@ struct MeterListView: View {
             VStack(alignment: .leading) {
                 List {
                     ForEach(meters) { meter in
-                        NavigationLink {
-                            PeriodListView(meter: meter)
-                        } label: {
-                            Text(meter.name ?? "")
+                        
+                        if let period = meter.getActuralPeriod() {
+                            NavigationLink {
+                                PeriodListView(meter: meter)
+                            } label: {
+                                MeterCardView(
+                                    name: meter.name ?? "",
+                                    icon: meter.icon ?? "",
+                                    period: period
+                                )
+                            }
+                        } else {
+                            NavigationLink {
+                                PeriodListView(meter: meter)
+                            } label: {
+                                MeterCardWithoutPeriodView(
+                                    name: meter.name ?? "",
+                                    icon: meter.icon ?? ""
+                                )
+                            }
                         }
-
                     }
                     .onDelete { indexSet in
                         print("Delete")
                     }
                 }
+                .listStyle(.plain)
             }
+            
             .navigationTitle("Zähler")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
