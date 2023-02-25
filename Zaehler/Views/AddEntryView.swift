@@ -19,7 +19,7 @@ struct AddEntryView: View {
         VStack {
             Form {
                 TextField("Value", text: $viewModel.value)
-                DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                DatePicker("Date", selection: $viewModel.date, in: (period.startDate ?? Date())...(period.endDate ?? Date()), displayedComponents: .date)
             }
             Button {
                 viewModel.saveEntry()

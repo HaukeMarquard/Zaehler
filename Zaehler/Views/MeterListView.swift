@@ -20,16 +20,15 @@ struct MeterListView: View {
                 List {
                     ForEach(meters) { meter in
                         
-                        if let period = meter.getActuralPeriod() {
+                        if let _ = meter.getActuralPeriod() {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
-                                MeterCardView(
-                                    name: meter.name ?? "",
-                                    icon: meter.icon ?? "",
-                                    period: period
-                                )
+                                NewMeterCardView(meter: meter)
                             }
+                            
+                            
+                            
                         } else {
                             NavigationLink {
                                 PeriodListView(meter: meter)

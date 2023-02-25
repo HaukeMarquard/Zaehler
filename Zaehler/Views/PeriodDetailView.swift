@@ -21,7 +21,6 @@ struct PeriodDetailView: View {
         
         let predicate = NSPredicate(format: "period == %@", period)
         _entries = FetchRequest(sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], predicate: predicate)
-        print("entriescount: ", entries.count)
     }
     
     var body: some View {
@@ -31,7 +30,7 @@ struct PeriodDetailView: View {
                 Text("Meter Title")
             }
             .font(.title)
-            Text("Period von - Period bis")
+            Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
@@ -52,16 +51,16 @@ struct PeriodDetailView: View {
                 }
             }
             
-            Text("Gesamtverbrauch: \(viewModel.wholeConsumption)")
-            Text("Tagesdurchschnitt: \(viewModel.daylyConsumption)")
-            Text("Gesamtpreis: \(viewModel.wholePrice)")
+            Text("Gesamtverbrauch: \(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType ?? "")")
+            Text("Tagesdurchschnitt: \(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
+            Text("Gesamtpreis: \(viewModel.wholePrice, format: .currency(code: "EUR"))")
             
             // Entry List
             List {
                 ForEach(entries) { entry in
                     VStack {
                         Text("\(entry.date.formatted(date: .abbreviated, time: .omitted))")
-                        Text("\(entry.value)")
+                        Text("\(String(format: "%.2f", entry.value)) \(period.unitType ?? "")")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

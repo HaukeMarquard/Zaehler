@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A881C3C629A9273500EB7086 /* MeterCardWithoutPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */; };
 		A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */; };
+		A881C3CB29AA740E00EB7086 /* NewMeterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3CA29AA740E00EB7086 /* NewMeterCardView.swift */; };
 		A889E8AE29A8AC1700D0C6B7 /* PeriodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */; };
 		A889E8B029A8AD3300D0C6B7 /* PeriodDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8AF29A8AD3300D0C6B7 /* PeriodDetailViewModel.swift */; };
 		A889E8B729A8ADC200D0C6B7 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889E8B529A8ADC200D0C6B7 /* Entry+CoreDataClass.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCardWithoutPeriodView.swift; sourceTree = "<group>"; };
 		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		A881C3CA29AA740E00EB7086 /* NewMeterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeterCardView.swift; sourceTree = "<group>"; };
 		A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailView.swift; sourceTree = "<group>"; };
 		A889E8AF29A8AD3300D0C6B7 /* PeriodDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailViewModel.swift; sourceTree = "<group>"; };
 		A889E8B529A8ADC200D0C6B7 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */,
 				A889E8BD29A8AFC600D0C6B7 /* AddEntryView.swift */,
 				A881C3C529A9273500EB7086 /* MeterCardWithoutPeriodView.swift */,
+				A881C3CA29AA740E00EB7086 /* NewMeterCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */,
 				A881C3C629A9273500EB7086 /* MeterCardWithoutPeriodView.swift in Sources */,
 				A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */,
+				A881C3CB29AA740E00EB7086 /* NewMeterCardView.swift in Sources */,
 				A889E8BE29A8AFC600D0C6B7 /* AddEntryView.swift in Sources */,
 				A8B6443829A7C11A00D1E349 /* MeterCardView.swift in Sources */,
 				A8B6444629A7C67C00D1E349 /* PeriodListView.swift in Sources */,
