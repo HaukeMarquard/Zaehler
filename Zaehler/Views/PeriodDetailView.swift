@@ -64,10 +64,18 @@ struct PeriodDetailView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
+                    .swipeActions(edge: .leading) {
+                        NavigationLink {
+                            EditEntryView(entry: entry, period: period)
+                        } label: {
+                            Text("Edit")
+                        }
+                    }
                 }
                 .onDelete { indexSet in
                     viewModel.deleteEntry(index: indexSet)
                 }
+                
                 
             }
             .listStyle(.plain)
