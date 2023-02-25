@@ -13,6 +13,8 @@ struct PeriodListView: View {
     
     @StateObject private var viewModel: PeriodListViewModel = PeriodListViewModel()
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @FetchRequest var actualPeriods: FetchedResults<Period>
     
     @FetchRequest var otherPeriods: FetchedResults<Period>
@@ -39,6 +41,13 @@ struct PeriodListView: View {
                             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                         }
                     }
+                    .onDelete { indexSet in
+                        indexSet.forEach { index in
+                            let period = actualPeriods[index]
+                            viewContext.delete(period)
+                        }
+                        PersistenceController.shared.save()
+                    }
                 }
                 
                 Section ("Other Period") {
@@ -49,46 +58,15 @@ struct PeriodListView: View {
                             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                         }
                     }
+                    .onDelete { indexSet in
+                        indexSet.forEach { index in
+                            let period = otherPeriods[index]
+                            viewContext.delete(period)
+                        }
+                        PersistenceController.shared.save()
+                    }
                 }
             }
-            
-            
-//            List {
-//
-//                let currentPeriod = getCurrentPeriod()
-//
-//                ForEach(viewModel.periods, id: \.objectID) { period in
-//
-//
-//
-//                    Section("Actual Period") {
-//                        if period.objectID == currentPeriod?.objectID {
-//                            NavigationLink {
-//                                PeriodDetailView(period: period)
-//                            } label: {
-//                                Text("\((period.startDate ?? Date())) - \(period.endDate ?? Date())")
-//                            }
-//                        }
-//                    }
-//
-//                    Section("Other Periods") {
-//                        if period.objectID != currentPeriod?.objectID {
-//                            NavigationLink {
-//                                PeriodDetailView(period: period)
-//                            } label: {
-//                                Text("\(period.startDate ?? Date()) - \(period.endDate ?? Date())")
-//                            }
-//                        }
-//                    }
-//
-////                    NavigationLink {
-////                        PeriodDetailView(period: period)
-////                    } label: {
-////                        Text("\(period.startDate ?? Date()) - \(period.endDate ?? Date())")
-////                    }
-//
-//                }
-//            }
         }
         .onAppear {
             viewModel.setMeter(meter: meter)
@@ -105,7 +83,7 @@ struct PeriodListView: View {
             let predicate = NSPredicate(format: "startDate <= %@ AND endDate >= %@", now as NSDate, now as NSDate)
             let sortedPeriods = meter.periods?.sortedArray(using: [NSSortDescriptor(keyPath: \Period.startDate, ascending: false)]) as? [Period]
             return sortedPeriods?.first(where: { predicate.evaluate(with: $0) })
-        }
+    }
     
     @ViewBuilder
     private func addButton() -> some View {

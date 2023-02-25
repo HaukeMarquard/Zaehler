@@ -98,7 +98,6 @@ struct PeriodDetailView: View {
         }
         .onAppear {
             viewModel.setPeriod(period: period)
-            calculateMonths()
         }
     }
     
