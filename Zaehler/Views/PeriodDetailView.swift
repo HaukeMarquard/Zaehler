@@ -12,12 +12,17 @@ struct PeriodDetailView: View {
     
     var period: Period
     
+    var icon: String
+    var name: String
+    
     @StateObject var viewModel: PeriodDetailViewModel = PeriodDetailViewModel()
     
     @FetchRequest var entries: FetchedResults<Entry>
     
-    init(period: Period) {
+    init(period: Period, icon: String, name: String) {
         self.period = period
+        self.icon = icon
+        self.name = name
         
         let predicate = NSPredicate(format: "period == %@", period)
         _entries = FetchRequest(sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], predicate: predicate)
@@ -26,8 +31,8 @@ struct PeriodDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: "circle")
-                Text("Meter Title")
+                Image(systemName: icon)
+                Text(name)
             }
             .font(.title)
             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
@@ -54,6 +59,7 @@ struct PeriodDetailView: View {
             Text("Gesamtverbrauch: \(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType ?? "")")
             Text("Tagesdurchschnitt: \(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
             Text("Gesamtpreis: \(viewModel.wholePrice, format: .currency(code: "EUR"))")
+            Text("Preis pro Monat anhand Tagesdurchschnitt: \(calculatePricePerMonth(), format: .currency(code: "EUR"))")
             
             // Entry List
             List {
@@ -70,7 +76,9 @@ struct PeriodDetailView: View {
                         } label: {
                             Text("Edit")
                         }
+                        .tint(.orange)
                     }
+                    
                 }
                 .onDelete { indexSet in
                     viewModel.deleteEntry(index: indexSet)
@@ -84,9 +92,13 @@ struct PeriodDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 addButton()
             }
+            ToolbarItem(placement: .navigation) {
+                Text(name)
+            }
         }
         .onAppear {
             viewModel.setPeriod(period: period)
+            calculateMonths()
         }
     }
     
@@ -110,6 +122,72 @@ struct PeriodDetailView: View {
             dayDiff = 1
         }
         return difference / Double(dayDiff!)
+    }
+    
+    func calculatePricePerMonth() -> Double {
+        
+        let tagesVerbrauch = viewModel.daylyConsumption
+        let tageZwischenDaten = daysBetweenDates()
+        let monate = monthsBetweenDates()
+        
+        return (tagesVerbrauch * Double(tageZwischenDaten) * period.unitPrice) / Double(monate)
+    }
+    
+    func monthsBetweenDates() -> Int {
+        let months = calculateMonths()
+        
+        var count = 0
+        for values in months.values {
+            count += values.count
+        }
+        
+        print("Count: \(count)")
+        
+        return count
+    }
+    
+    func daysBetweenDates() -> Int {
+        let startDate = period.startDate ?? Date()
+        let endDate = period.endDate ?? Date()
+        
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day], from: startDate, to: endDate)
+        print("Tage: \(dateComponents.day)")
+        return dateComponents.day ?? 0
+    }
+
+    
+    func calculateMonths() -> [Int: [Int]] {
+        let startDate = period.startDate ?? Date() // setzen Sie hier das Startdatum ein
+        let endDate = period.endDate ?? Date() // setzen Sie hier das Enddatum ein
+
+        var monthsDict = [Int: [Int]]()
+        let calendar = Calendar.current
+
+        let dateComponents = DateComponents(day: 1)
+        var currentDate = calendar.date(from: calendar.dateComponents([.year, .month], from: startDate))!
+
+        while currentDate <= endDate {
+            let month = calendar.component(.month, from: currentDate)
+            let year = calendar.component(.year, from: currentDate)
+            
+            if var months = monthsDict[year] {
+                if !months.contains(month) {
+                    months.append(month)
+                    monthsDict[year] = months
+                }
+            } else {
+                monthsDict[year] = [month]
+            }
+            
+            currentDate = calendar.date(byAdding: dateComponents, to: currentDate)!
+        }
+
+//        for (year, months) in monthsDict {
+//            print("\(year): \(months.map { String(format: "%02d", $0) }.joined(separator: ", "))")
+//        }
+        
+        return monthsDict
     }
 }
 

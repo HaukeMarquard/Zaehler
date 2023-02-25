@@ -26,6 +26,7 @@ struct EditEntryView: View {
         VStack {
             Form {
                 TextField("Value", text: $value)
+                    .keyboardType(.numbersAndPunctuation)
                 DatePicker("Date", selection: $date, in: (period.startDate ?? Date())...(period.endDate ?? Date()), displayedComponents: .date)
             }
             Button {

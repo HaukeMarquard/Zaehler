@@ -37,12 +37,12 @@ struct AddPeriodView: View {
                         .pickerStyle(.segmented)
                         
                         TextField("Price", text: $viewModel.fixPrice)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.numbersAndPunctuation)
                     }
                 }
                 Section("Consuming") {
                     TextField("Price per Unit", text: $viewModel.unitPrice)
-                        .keyboardType(.numberPad)
+                        .keyboardType(.numbersAndPunctuation)
                     Picker(selection: $viewModel.unitType, label: Text("Unit")) {
                         ForEach(UnitType.allCases, id: \.rawValue) { unit in
                             Text(unit.rawValue).tag(unit)

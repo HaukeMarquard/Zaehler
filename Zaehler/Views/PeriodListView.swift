@@ -34,7 +34,7 @@ struct PeriodListView: View {
                 Section("Actual Period") {
                     ForEach(actualPeriods) { period in
                         NavigationLink {
-                            PeriodDetailView(period: period)
+                            PeriodDetailView(period: period, icon: meter.icon ?? "circle", name: meter.name ?? "")
                         } label: {
                             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                         }
@@ -44,7 +44,7 @@ struct PeriodListView: View {
                 Section ("Other Period") {
                     ForEach(otherPeriods) { period in
                         NavigationLink {
-                            PeriodDetailView(period: period)
+                            PeriodDetailView(period: period, icon: meter.icon ?? "circle", name: meter.name ?? "")
                         } label: {
                             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                         }
