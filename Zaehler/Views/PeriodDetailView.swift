@@ -19,6 +19,8 @@ struct PeriodDetailView: View {
     
     @FetchRequest var entries: FetchedResults<Entry>
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
     init(period: Period, icon: String, name: String) {
         self.period = period
         self.icon = icon
@@ -40,21 +42,21 @@ struct PeriodDetailView: View {
                 .foregroundColor(.secondary)
             
             // Chart
-            Chart {
-                ForEach(entries.indices, id: \.self) { index in
-                    if index > 0 {
-                        let showValue = calculateAverage(higherDate: entries[index].date, lowerDate: entries[index - 1].date, higherValue: entries[index].value, lowerValue: entries[index - 1].value)
+            VStack(alignment: .leading, spacing: 12) {
 
-                        LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
-                            .cornerRadius(10)
-                            .interpolationMethod(.catmullRom)
-                    } else {
-                        LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", 0), series: .value("Year", "2023"))
-                            .cornerRadius(10)
-                            .interpolationMethod(.catmullRom)
-                    }
-                }
+                Text("\(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
+                    .font(.largeTitle.bold())
+                    .padding(.leading)
+                AnimatedChart()
             }
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(.white.shadow(.drop(radius: 2)))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            
             
             Text("Gesamtverbrauch: \(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType ?? "")")
             Text("Tagesdurchschnitt: \(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
@@ -64,8 +66,9 @@ struct PeriodDetailView: View {
             // Entry List
             List {
                 ForEach(entries) { entry in
-                    VStack {
+                    HStack {
                         Text("\(entry.date.formatted(date: .abbreviated, time: .omitted))")
+                        Spacer()
                         Text("\(String(format: "%.2f", entry.value)) \(period.unitType ?? "")")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -87,6 +90,7 @@ struct PeriodDetailView: View {
                 
             }
             .listStyle(.plain)
+            .listRowSeparator(.hidden, edges: .all)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -98,6 +102,26 @@ struct PeriodDetailView: View {
         }
         .onAppear {
             viewModel.setPeriod(period: period)
+        }
+    }
+    
+    @ViewBuilder
+    func AnimatedChart() -> some View {
+        Chart {
+            ForEach(entries.indices, id: \.self) { index in
+                if index > 0 {
+                    let showValue = calculateAverage(higherDate: entries[index].date, lowerDate: entries[index - 1].date, higherValue: entries[index].value, lowerValue: entries[index - 1].value)
+
+                    LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                        .cornerRadius(10)
+                        .interpolationMethod(.catmullRom)
+                } else {
+                    // MARK: Rausgenommen, da soner bei 0 angefangen wird. Grafik wird komisch damit
+//                        LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", 0), series: .value("Year", "2023"))
+//                            .cornerRadius(10)
+//                            .interpolationMethod(.catmullRom)
+                }
+            }
         }
     }
     
@@ -192,6 +216,6 @@ struct PeriodDetailView: View {
 
 //struct PeriodDetailView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PeriodDetailView()
+//        PeriodDetailView(period: <#Period#>, icon: <#String#>, name: <#String#>)
 //    }
 //}

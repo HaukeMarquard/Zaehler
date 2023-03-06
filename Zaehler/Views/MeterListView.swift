@@ -17,7 +17,7 @@ struct MeterListView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                List {
+//                List {
                     ForEach(meters) { meter in
                         
                         if let _ = meter.getActuralPeriod() {
@@ -33,19 +33,23 @@ struct MeterListView: View {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
-                                MeterCardWithoutPeriodView(
-                                    name: meter.name ?? "",
-                                    icon: meter.icon ?? ""
-                                )
+//                                MeterCardWithoutPeriodView(
+//                                    name: meter.name ?? "",
+//                                    icon: meter.icon ?? ""
+//                                )
+                                NewMeterCardView(meter: meter)
                             }
                         }
                     }
                     .onDelete { indexSet in
                         print("Delete")
                     }
-                }
-                .listStyle(.plain)
+//                }
+//                .listStyle(.plain)
             }
+            .padding(.top, 20)
+            Spacer()
+                
             
             .navigationTitle("Zähler")
             .toolbar {
