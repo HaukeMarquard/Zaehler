@@ -22,7 +22,7 @@ struct MeterListView: View {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
-                                NewMeterCardView(meter: meter)
+                                MeterCardView(meter: meter)
                                     .contextMenu {
                                         deleteButton(meter: meter)
                                     }
@@ -31,7 +31,7 @@ struct MeterListView: View {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
-                                NewMeterCardView(meter: meter)
+                                MeterCardView(meter: meter)
                                     .contextMenu {
                                         deleteButton(meter: meter)
                                     }

@@ -1,68 +1,78 @@
 //
-//  MeterCardView.swift
+//  NewMeterCardView.swift
 //  Zaehler
 //
-//  Created by Hauke Marquard on 23.02.23.
+//  Created by Hauke Marquard on 25.02.23.
 //
 
 import SwiftUI
 
 struct MeterCardView: View {
     
-    var name: String
-    var icon: String
+//    var name: String = "Electric"
+//    var icon: String = "powerplug"
+//    var iconColor: Color = .red
     
-    var period: Period
+    var meter: Meter
     
-    @FetchRequest var entries: FetchedResults<Entry>
+//    init(name: String, icon: String, meter: Meter) {
+//        self.meter = meter
+//        self.name = name
+//        self.icon = icon
+//
+//        let predicate = NSPredicate(format: "period == %@", meter)
+//        _entries = FetchRequest(sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], predicate: predicate)
+//    }
     
-    init(name: String, icon: String, period: Period) {
-        self.period = period
-        self.name = name
-        self.icon = icon
-        
-        let predicate = NSPredicate(format: "period == %@", period)
-        _entries = FetchRequest(sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], predicate: predicate)
-    }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: icon)
-                Text(name)
+                Image(systemName: meter.icon ?? "circle")
+                    .font(.title3)
+    //                .padding(.horizontal)
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.primary)
+                VStack(alignment: .leading) {
+                    Text(meter.name ?? "")
+                        .font(.title)
+                        .foregroundColor(.primary)
+                    if let startDate = getCurrentPeriod()?.startDate, let endDate = getCurrentPeriod()?.endDate {
+                        Text("Aktueller Zeitraum: \(startDate.formatted(date: .abbreviated, time: .omitted)) - \(endDate.formatted(date: .abbreviated, time: .omitted))")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    } else {
+                        Text("Kein aktueller Zeitraum hinterlegt.")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
+                    // MARK: Alter Text zur anzeige.
+    //                Text("Aktueller Zeitraum: \((getCurrentPeriod()?.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((getCurrentPeriod()?.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
+    //                    .font(.footnote)
+    //                    .foregroundColor(.secondary)
+                }
                 Spacer()
             }
-            .font(.title)
-            if let period = period {
-                Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
-                Text("Gesamtverbrauch: \(String(format: "%.2f", calculateWholeConsumption())) \(period.unitType ?? "")")
-                Text("Verbrauch pro Tag: \(String(format: "%.2f", calculateDailyConsumption())) \(period.unitType ?? "")")
-                
-            }
+            .padding()
         }
+        .background(Color("ListItem"))
+        .cornerRadius(15)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .strokeBorder(.linearGradient(colors: [.clear, .accentColor.opacity(0.45), .clear, .accentColor.opacity(0.45), .clear], startPoint: .topLeading, endPoint: .bottomTrailing))
+        )
     }
     
-    func calculateWholeConsumption() -> Double {
-        guard let first = entries.first, let last = entries.last else { return 0.0 }
-        
-        let sum = first.value - last.value
-        return sum
-        
-    }
-    
-    func calculateDailyConsumption() -> Double {
-        guard let first = entries.first, let last = entries.last else { return 0.0 }
-        
-        guard let difference = Calendar.current.dateComponents([.day], from: first.date, to: last.date ).day else { return 0.0 }
-        
-        return calculateWholeConsumption() / Double(difference + 2)
-        
-    }
-
+    func getCurrentPeriod() -> Period? {
+            let now = Date()
+            let predicate = NSPredicate(format: "startDate <= %@ AND endDate >= %@", now as NSDate, now as NSDate)
+            let sortedPeriods = meter.periods?.sortedArray(using: [NSSortDescriptor(keyPath: \Period.startDate, ascending: false)]) as? [Period]
+            return sortedPeriods?.first(where: { predicate.evaluate(with: $0) })
+        }
 }
 
-//struct MeterCardView_Previews: PreviewProvider {
+//struct NewMeterCardView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MeterCardView(name: "Elektro", icon: "powerplug")
+//        NewMeterCardView()
 //    }
 //}
