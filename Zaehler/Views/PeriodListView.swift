@@ -76,6 +76,8 @@ struct PeriodListView: View {
                 addButton()
             }
         }
+        .navigationTitle(meter.name ?? "")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func getCurrentPeriod() -> Period? {

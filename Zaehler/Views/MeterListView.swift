@@ -17,46 +17,55 @@ struct MeterListView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-//                List {
                     ForEach(meters) { meter in
-                        
                         if let _ = meter.getActuralPeriod() {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
                                 NewMeterCardView(meter: meter)
+                                    .contextMenu {
+                                        deleteButton(meter: meter)
+                                    }
                             }
-                            
-                            
-                            
                         } else {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
-//                                MeterCardWithoutPeriodView(
-//                                    name: meter.name ?? "",
-//                                    icon: meter.icon ?? ""
-//                                )
                                 NewMeterCardView(meter: meter)
+                                    .contextMenu {
+                                        deleteButton(meter: meter)
+                                    }
                             }
                         }
                     }
                     .onDelete { indexSet in
                         print("Delete")
                     }
-//                }
-//                .listStyle(.plain)
             }
             .padding(.top, 20)
             Spacer()
-                
-            
             .navigationTitle("Zähler")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     addButton()
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func deleteButton(meter: Meter) -> some View {
+        Button {
+            viewContext.delete(meter)
+            
+            do {
+                try viewContext.save()
+            } catch {
+                print("Delete of Meter was not successful")
+                viewContext.rollback()
+            }
+        } label: {
+            Label("Delete Meter", systemImage: "trash")
         }
     }
     

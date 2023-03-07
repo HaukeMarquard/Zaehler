@@ -15,9 +15,13 @@ struct PeriodDetailView: View {
     var icon: String
     var name: String
     
+    @State var average: Double = 0.0
+    
     @StateObject var viewModel: PeriodDetailViewModel = PeriodDetailViewModel()
     
     @FetchRequest var entries: FetchedResults<Entry>
+    
+    @Environment(\.colorScheme) var colorScheme
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -32,34 +36,33 @@ struct PeriodDetailView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: icon)
-                Text(name)
-            }
-            .font(.title)
             Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
             // Chart
             VStack(alignment: .leading, spacing: 12) {
+                Text("Tagesdurchschnitt:")
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+                    .padding(.leading)
 
                 Text("\(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
-                    .font(.largeTitle.bold())
+                    .font(.title.bold())
                     .padding(.leading)
                 AnimatedChart()
             }
             .padding()
             .background {
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(.white.shadow(.drop(radius: 2)))
+//                    .fill(.primary.shadow(.drop(radius: 2)))
+                    .fill(Color(UIColor.systemBackground).shadow(.drop(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.8), radius: 2, x: 1, y: 1)))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
             
             
             Text("Gesamtverbrauch: \(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType ?? "")")
-            Text("Tagesdurchschnitt: \(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
             Text("Gesamtpreis: \(viewModel.wholePrice, format: .currency(code: "EUR"))")
             Text("Preis pro Monat anhand Tagesdurchschnitt: \(calculatePricePerMonth(), format: .currency(code: "EUR"))")
             
@@ -96,13 +99,12 @@ struct PeriodDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 addButton()
             }
-            ToolbarItem(placement: .navigation) {
-                Text(name)
-            }
         }
         .onAppear {
             viewModel.setPeriod(period: period)
         }
+        .navigationTitle(name)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder
@@ -115,14 +117,16 @@ struct PeriodDetailView: View {
                     LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
                         .cornerRadius(10)
                         .interpolationMethod(.catmullRom)
-                } else {
-                    // MARK: Rausgenommen, da soner bei 0 angefangen wird. Grafik wird komisch damit
-//                        LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", 0), series: .value("Year", "2023"))
-//                            .cornerRadius(10)
-//                            .interpolationMethod(.catmullRom)
+                    AreaMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                        .cornerRadius(10)
+                        .interpolationMethod(.catmullRom)
+                        .foregroundStyle(Color.accentColor.opacity(0.1).gradient)
+                        
                 }
             }
         }
+        .foregroundColor(.primary
+        )
     }
     
     @ViewBuilder
@@ -175,7 +179,6 @@ struct PeriodDetailView: View {
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.day], from: startDate, to: endDate)
-        print("Tage: \(dateComponents.day)")
         return dateComponents.day ?? 0
     }
 

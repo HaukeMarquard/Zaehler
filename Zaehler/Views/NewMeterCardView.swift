@@ -56,7 +56,7 @@ struct NewMeterCardView: View {
             .padding()
         }
         .background(Color("ListItem"))
-        .cornerRadius(20)
+        .cornerRadius(15)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .strokeBorder(.linearGradient(colors: [.clear, .accentColor.opacity(0.45), .clear, .accentColor.opacity(0.45), .clear], startPoint: .topLeading, endPoint: .bottomTrailing))
