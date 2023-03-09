@@ -22,7 +22,7 @@ class PeriodDetailViewModel: ObservableObject {
         entries = period.entriesArray
         wholeConsumption = calculateWholeConsumption()
         daylyConsumption = calculateDailyConsumption()
-        wholePrice = calculateWholePrice()
+        calculateWholePrice()
     }
     
     func calculateWholeConsumption() -> Double {
@@ -42,13 +42,13 @@ class PeriodDetailViewModel: ObservableObject {
         
     }
     
-    func calculateWholePrice() -> Double {
+    func calculateWholePrice() {
         
         let wholeConsumption = calculateWholeConsumption()
         
-        guard let period = period else { return 0.0 }
+        guard let period = period else { return }
         
-        return wholeConsumption * period.unitPrice
+        wholePrice = wholeConsumption * period.unitPrice
         
     }
     

@@ -38,13 +38,10 @@ struct MeterListView: View {
                             }
                         }
                     }
-                    .onDelete { indexSet in
-                        print("Delete")
-                    }
             }
             .padding(.top, 20)
             Spacer()
-            .navigationTitle("Zähler")
+            .navigationTitle("meterListTitle")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     addButton()
@@ -65,7 +62,7 @@ struct MeterListView: View {
                 viewContext.rollback()
             }
         } label: {
-            Label("Delete Meter", systemImage: "trash")
+            Label("buttonDeleteMeter", systemImage: "trash")
         }
     }
     

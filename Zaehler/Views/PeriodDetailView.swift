@@ -15,6 +15,7 @@ struct PeriodDetailView: View {
     var icon: String
     var name: String
     
+    @State var showDetails: Bool = false
     @State var average: Double = 0.0
     
     @StateObject var viewModel: PeriodDetailViewModel = PeriodDetailViewModel()
@@ -24,6 +25,16 @@ struct PeriodDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @Environment(\.managedObjectContext) private var viewContext
+
+    
+    let dateFormatter = DateFormatter()
+    let dateFormatterChart = DateFormatter()
+    let myDate = Date()
+    let myLocalizedStringKey = "date_Format"
+    let chartDateStringKey = "date_Format_Chart"
+    
+    let testDateFormatter = DateFormatter()
+    
     
     init(period: Period, icon: String, name: String) {
         self.period = period
@@ -35,44 +46,66 @@ struct PeriodDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
+        ScrollView {
+            Text("\((period.startDate).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate).formatted(date: .abbreviated, time: .omitted))")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
             // Chart
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Tagesdurchschnitt:")
-                    .foregroundColor(.secondary)
-                    .font(.footnote)
-                    .padding(.leading)
-
-                Text("\(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType ?? "")")
-                    .font(.title.bold())
-                    .padding(.leading)
-                AnimatedChart()
-            }
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                    .fill(.primary.shadow(.drop(radius: 2)))
-                    .fill(Color(UIColor.systemBackground).shadow(.drop(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.8), radius: 2, x: 1, y: 1)))
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
+            ChartSection()
             
-            
-            Text("Gesamtverbrauch: \(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType ?? "")")
-            Text("Gesamtpreis: \(viewModel.wholePrice, format: .currency(code: "EUR"))")
-            Text("Preis pro Monat anhand Tagesdurchschnitt: \(calculatePricePerMonth(), format: .currency(code: "EUR"))")
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("totalConsumption")
+                        .font(.callout)
+                    Text("\(String(format: "%.2f", viewModel.wholeConsumption)) \(period.unitType)")
+                        .font(.title3)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, minHeight: 120, maxHeight: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color(UIColor.systemBackground).shadow(.drop(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.8), radius: 2, x: 1, y: 1)))
+                }
+                
+                .padding(.leading)
+                .padding(.trailing, 4)
+                
+                VStack(alignment: .leading) {
+                    Text("pricePerMonth")
+                        .font(.callout)
+                    Text("\(formatCurrency(calculatePricePerMonth()))")
+                        .font(.title3)
+                        .padding(.bottom)
+                    Text(String(format: NSLocalizedString("totalPrice", comment: ""), formatCurrency(viewModel.wholePrice)))
+                        .font(.footnote)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, minHeight: 120, maxHeight: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(Color(UIColor.systemBackground).shadow(.drop(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.8), radius: 2, x: 1, y: 1)))
+                }
+                
+                .padding(.trailing)
+                .padding(.leading, 4)
+            }
             
             // Entry List
+            HStack() {
+                Text("entriesTitle")
+                    .font(.subheadline)
+                    .padding([.top, .leading])
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            
             List {
                 ForEach(entries) { entry in
                     HStack {
                         Text("\(entry.date.formatted(date: .abbreviated, time: .omitted))")
                         Spacer()
-                        Text("\(String(format: "%.2f", entry.value)) \(period.unitType ?? "")")
+                        Text("\(String(format: "%.2f", entry.value)) \(period.unitType)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -94,17 +127,53 @@ struct PeriodDetailView: View {
             }
             .listStyle(.plain)
             .listRowSeparator(.hidden, edges: .all)
+            .frame(minHeight: 200)
         }
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                infoButton()
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 addButton()
             }
         }
         .onAppear {
             viewModel.setPeriod(period: period)
+            dateFormatter.dateFormat = NSLocalizedString(myLocalizedStringKey, comment: "")
+            dateFormatterChart.dateFormat = NSLocalizedString(chartDateStringKey, comment: "")
+            testDateFormatter.dateFormat = "d.M"
         }
+        .sheet(isPresented: $showDetails, onDismiss: {
+            viewModel.calculateWholePrice()
+        }, content: {
+            EditPeriodView(period: period)
+        })
         .navigationTitle(name)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    @ViewBuilder
+    func ChartSection() -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("dailyAverage")
+                .foregroundColor(.secondary)
+                .font(.footnote)
+                .padding(.leading)
+
+            Text("\(String(format: "%.2f", viewModel.daylyConsumption)) \(period.unitType)")
+                .font(.title.bold())
+                .padding(.leading)
+            AnimatedChart()
+        }
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+//                    .fill(.primary.shadow(.drop(radius: 2)))
+                .fill(Color(UIColor.systemBackground).shadow(.drop(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.8), radius: 2, x: 1, y: 1)))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding([.horizontal])
+        .padding(.bottom, 8)
     }
     
     @ViewBuilder
@@ -113,11 +182,10 @@ struct PeriodDetailView: View {
             ForEach(entries.indices, id: \.self) { index in
                 if index > 0 {
                     let showValue = calculateAverage(higherDate: entries[index].date, lowerDate: entries[index - 1].date, higherValue: entries[index].value, lowerValue: entries[index - 1].value)
-
-                    LineMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                    LineMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
                         .cornerRadius(10)
                         .interpolationMethod(.catmullRom)
-                    AreaMark(x: .value("Day", entries[index].date.formatted(date: .abbreviated, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                    AreaMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
                         .cornerRadius(10)
                         .interpolationMethod(.catmullRom)
                         .foregroundStyle(Color.accentColor.opacity(0.1).gradient)
@@ -125,8 +193,16 @@ struct PeriodDetailView: View {
                 }
             }
         }
-        .foregroundColor(.primary
-        )
+        .foregroundColor(.primary)
+    }
+    
+    @ViewBuilder
+    func infoButton() -> some View {
+        Button {
+            showDetails = true
+        } label : {
+            Image(systemName: "info.circle")
+        }
     }
     
     @ViewBuilder
@@ -136,9 +212,9 @@ struct PeriodDetailView: View {
             AddEntryView(period: period)
         } label: {
             Image(systemName: "plus.circle")
-                .font(.title3)
+//                .font(.title3)
         }
-        .padding([.vertical, .leading], 5)
+        .padding([.vertical], 5)
     }
     
     func calculateAverage(higherDate: Date, lowerDate: Date, higherValue: Double, lowerValue: Double) -> Double {
@@ -168,14 +244,12 @@ struct PeriodDetailView: View {
             count += values.count
         }
         
-        print("Count: \(count)")
-        
         return count
     }
     
     func daysBetweenDates() -> Int {
-        let startDate = period.startDate ?? Date()
-        let endDate = period.endDate ?? Date()
+        let startDate = period.startDate
+        let endDate = period.endDate
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.day], from: startDate, to: endDate)
@@ -184,8 +258,8 @@ struct PeriodDetailView: View {
 
     
     func calculateMonths() -> [Int: [Int]] {
-        let startDate = period.startDate ?? Date() // setzen Sie hier das Startdatum ein
-        let endDate = period.endDate ?? Date() // setzen Sie hier das Enddatum ein
+        let startDate = period.startDate // setzen Sie hier das Startdatum ein
+        let endDate = period.endDate // setzen Sie hier das Enddatum ein
 
         var monthsDict = [Int: [Int]]()
         let calendar = Calendar.current
@@ -222,3 +296,4 @@ struct PeriodDetailView: View {
 //        PeriodDetailView(period: <#Period#>, icon: <#String#>, name: <#String#>)
 //    }
 //}
+

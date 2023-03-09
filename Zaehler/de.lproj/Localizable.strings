@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  Zaehler
+
+  Created by Hauke Marquard on 08.03.23.
+  
+*/
+
+"buttonClose" = "Schließen";
+"buttonSave" = "Speichern";
+
+// Period
+
+"periodSectionHeader" = "Intervall";
+"periodBegin" = "Beginn";
+"periodEnd" = "Ende";
+"fixPriceSectionHeader" = "Grundpreis";
+"fixPriceToggle" = "Enthält einen Grundpreis";
+"fixPriceValuePlaceholder" = "Preis";
+"consumptionSectionHeader" = "Verbrauch";
+"consumptionValuePlaceholder" = "Preis pro verbrauchte Einheit";
+
+// PeriodListView
+
+"actualPeriodSectionHeader" = "Aktuelle Periode(n)";
+"otherPeriodSecitonHeader" = "Andere Perioden";
+
+// PeriodDetailView
+
+"dailyAverage" = "Tagesdurchschnitt";
+"totalConsumption" = "Gesamtverbrauch";
+"totalPrice" = "Gesamtpreis: %@";
+"pricePerMonth" = "Preis pro Monat";
+"entriesTitle" = "Einträge";
+
+// Entry
+
+"entryValuePlaceholder" = "Abgelesener Wert";
+"entryDateDescription" = "Datum";
+
+// Meter
+
+"meterListTitle" = "Zähler";
+"buttonDeleteMeter" = "Zähler löschen";
+
+"currentPeriod" = "Aktueller Zeitraum: %@ - %@";
+"noCurrentPeriod" = "Kein aktueller Zeitraum hinterlegt";
+
+// Date Formats
+
+"date_Format" = "dd. MMM yyyy";
+"date_Format_Chart" = "d.M.";
+
+/*
+ Möchte man Strings haben, die Werte übernehmen, geht das wie folgt:
+ 
+ "title" = "Hallo, %@"
+ Somit kann man Werte übergeben. Können auch mehrere %@ sein, diese müssen dann jedoch in korrekter Reihenfolge übergeben werden
+ 
+ In der View sieht das dann wie folgt aus:
+ Text(String(format: NSLocalizedString("title", comment: ""), "Hauke")
+ Somit wird der Wert Hauke an stelle von %@ eingesetzt
+ 
+ */

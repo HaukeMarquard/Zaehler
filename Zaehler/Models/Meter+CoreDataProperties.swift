@@ -24,12 +24,12 @@ extension Meter {
     public var periodsArray: [Period] {
         let set = periods as? Set<Period> ?? []
         
-        return set.sorted { $0.startDate ?? Date() < $1.startDate ?? Date() }
+        return set.sorted { $0.startDate < $1.startDate }
     }
     
     public func getActuralPeriod() -> Period? {
 
-        let period = self.periodsArray.first { $0.startDate ?? Date() <= Date() && $0.endDate ?? Date() >= Date() }
+        let period = self.periodsArray.first { $0.startDate <= Date() && $0.endDate >= Date() }
 
         return period
     }

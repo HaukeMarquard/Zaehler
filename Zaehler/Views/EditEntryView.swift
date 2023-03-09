@@ -17,6 +17,8 @@ struct EditEntryView: View {
     @State private var value: String = "50"
     @State private var date: Date = Date()
     
+    @FocusState private var focusedField: Field?
+    
     init(entry: Entry, period: Period) {
         self.entry = entry
         self.period = period
@@ -25,21 +27,27 @@ struct EditEntryView: View {
     var body: some View {
         VStack {
             Form {
-                TextField("Value", text: $value)
-                    .keyboardType(.numbersAndPunctuation)
-                DatePicker("Date", selection: $date, in: (period.startDate ?? Date())...(period.endDate ?? Date()), displayedComponents: .date)
+                NumericTextField(text: $value, placeholder: String(localized: "entryValuePlaceholder"))
+                    .focused($focusedField, equals: .first)
+                DatePicker("entryDateDescriptor", selection: $date, in: (period.startDate)...(period.endDate), displayedComponents: .date)
             }
-            Button {
-                saveEntry()
-                dismiss()
-            } label: {
-                Text("Save Entry")
-            }
-            
+            SaveAndCloseBtns(closeAction: dismiss, save: saveEntry)
         }
         .onAppear {
             value = "\(entry.value)"
             date = entry.date
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Spacer()
+            }
+            ToolbarItem(placement: .keyboard) {
+                Button {
+                    focusedField = nil
+                } label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+            }
         }
     }
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A85F744B29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */; };
+		A875188029B7708400E7528B /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875187F29B7708400E7528B /* NumericTextField.swift */; };
+		A875188229B78AD300E7528B /* Buton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875188129B78AD300E7528B /* Buton+Extensions.swift */; };
 		A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */; };
 		A881C3CB29AA740E00EB7086 /* MeterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3CA29AA740E00EB7086 /* MeterCardView.swift */; };
 		A881C3CD29AA9CC500EB7086 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3CC29AA9CC500EB7086 /* EditEntryView.swift */; };
@@ -32,9 +35,16 @@
 		A8B6444D29A88A5600D1E349 /* AddPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */; };
 		A8B6444F29A88A9C00D1E349 /* AddPeriodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6444E29A88A9C00D1E349 /* AddPeriodViewModel.swift */; };
 		A8DFD3CC29B64181007C18E1 /* AddMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DFD3CB29B64181007C18E1 /* AddMeterView.swift */; };
+		A8FAC93B29B89FA500B58B48 /* EditPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAC93A29B89FA500B58B48 /* EditPeriodView.swift */; };
+		A8FAC94029B8AB5800B58B48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8FAC94229B8AB5800B58B48 /* Localizable.strings */; };
+		A8FAC94629B8BE3900B58B48 /* KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAC94529B8BE3900B58B48 /* KeyboardFunctionality.swift */; };
+		A8FAC94829B8D16100B58B48 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAC94729B8D16100B58B48 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndCloseBtns.swift; sourceTree = "<group>"; };
+		A875187F29B7708400E7528B /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
+		A875188129B78AD300E7528B /* Buton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buton+Extensions.swift"; sourceTree = "<group>"; };
 		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		A881C3CA29AA740E00EB7086 /* MeterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterCardView.swift; sourceTree = "<group>"; };
 		A881C3CC29AA9CC500EB7086 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
@@ -62,6 +72,11 @@
 		A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeriodView.swift; sourceTree = "<group>"; };
 		A8B6444E29A88A9C00D1E349 /* AddPeriodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeriodViewModel.swift; sourceTree = "<group>"; };
 		A8DFD3CB29B64181007C18E1 /* AddMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeterView.swift; sourceTree = "<group>"; };
+		A8FAC93A29B89FA500B58B48 /* EditPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPeriodView.swift; sourceTree = "<group>"; };
+		A8FAC94129B8AB5800B58B48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A8FAC94429B8AF2500B58B48 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A8FAC94529B8BE3900B58B48 /* KeyboardFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFunctionality.swift; sourceTree = "<group>"; };
+		A8FAC94729B8D16100B58B48 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */,
+				A875187F29B7708400E7528B /* NumericTextField.swift */,
+				A875188129B78AD300E7528B /* Buton+Extensions.swift */,
+				A8FAC94529B8BE3900B58B48 /* KeyboardFunctionality.swift */,
+				A8FAC94729B8D16100B58B48 /* Currency.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -112,6 +131,7 @@
 				A8B6442C29A7C01300D1E349 /* Info.plist */,
 				A8B6442929A7C01300D1E349 /* Zaehler.xcdatamodeld */,
 				A8B6442429A7C01300D1E349 /* Preview Content */,
+				A8FAC94229B8AB5800B58B48 /* Localizable.strings */,
 			);
 			path = Zaehler;
 			sourceTree = "<group>";
@@ -131,6 +151,7 @@
 				A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */,
 				A889E8BD29A8AFC600D0C6B7 /* AddEntryView.swift */,
 				A881C3CC29AA9CC500EB7086 /* EditEntryView.swift */,
+				A8FAC93A29B89FA500B58B48 /* EditPeriodView.swift */,
 				A8B6443529A7C11100D1E349 /* MeterListView.swift */,
 				A881C3CA29AA740E00EB7086 /* MeterCardView.swift */,
 				A8B6444529A7C67C00D1E349 /* PeriodListView.swift */,
@@ -168,6 +189,7 @@
 		A8B6444B29A8894000D1E349 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +236,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = A8B6441229A7C01200D1E349;
 			productRefGroup = A8B6441C29A7C01200D1E349 /* Products */;
@@ -231,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B6442629A7C01300D1E349 /* Preview Assets.xcassets in Resources */,
+				A8FAC94029B8AB5800B58B48 /* Localizable.strings in Resources */,
 				A8B6442329A7C01300D1E349 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,18 +267,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A889E8BB29A8ADED00D0C6B7 /* Period+CoreDataClass.swift in Sources */,
+				A85F744B29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift in Sources */,
 				A8B6442829A7C01300D1E349 /* Persistence.swift in Sources */,
 				A8B6444829A7C78900D1E349 /* PeriodListViewModel.swift in Sources */,
+				A8FAC93B29B89FA500B58B48 /* EditPeriodView.swift in Sources */,
 				A889E8AE29A8AC1700D0C6B7 /* PeriodDetailView.swift in Sources */,
 				A889E8B729A8ADC200D0C6B7 /* Entry+CoreDataClass.swift in Sources */,
+				A875188029B7708400E7528B /* NumericTextField.swift in Sources */,
 				A8B6444F29A88A9C00D1E349 /* AddPeriodViewModel.swift in Sources */,
 				A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */,
+				A875188229B78AD300E7528B /* Buton+Extensions.swift in Sources */,
 				A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */,
 				A8B6441F29A7C01200D1E349 /* ZaehlerApp.swift in Sources */,
+				A8FAC94829B8D16100B58B48 /* Currency.swift in Sources */,
 				A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */,
 				A881C3CD29AA9CC500EB7086 /* EditEntryView.swift in Sources */,
 				A8DFD3CC29B64181007C18E1 /* AddMeterView.swift in Sources */,
 				A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */,
+				A8FAC94629B8BE3900B58B48 /* KeyboardFunctionality.swift in Sources */,
 				A881C3CB29AA740E00EB7086 /* MeterCardView.swift in Sources */,
 				A889E8BE29A8AFC600D0C6B7 /* AddEntryView.swift in Sources */,
 				A8B6444629A7C67C00D1E349 /* PeriodListView.swift in Sources */,
@@ -269,6 +299,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A8FAC94229B8AB5800B58B48 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8FAC94129B8AB5800B58B48 /* en */,
+				A8FAC94429B8AF2500B58B48 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A8B6442D29A7C01300D1E349 /* Debug */ = {

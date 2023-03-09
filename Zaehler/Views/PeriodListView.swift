@@ -33,12 +33,12 @@ struct PeriodListView: View {
         VStack {
             
             List {
-                Section("Actual Period") {
+                Section("actualPeriodSectionHeader") {
                     ForEach(actualPeriods) { period in
                         NavigationLink {
                             PeriodDetailView(period: period, icon: meter.icon ?? "circle", name: meter.name ?? "")
                         } label: {
-                            Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
+                            Text("\((period.startDate).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate).formatted(date: .abbreviated, time: .omitted))")
                         }
                     }
                     .onDelete { indexSet in
@@ -50,12 +50,12 @@ struct PeriodListView: View {
                     }
                 }
                 
-                Section ("Other Period") {
+                Section ("otherPeriodSectionHeader") {
                     ForEach(otherPeriods) { period in
                         NavigationLink {
                             PeriodDetailView(period: period, icon: meter.icon ?? "circle", name: meter.name ?? "")
                         } label: {
-                            Text("\((period.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
+                            Text("\((period.startDate).formatted(date: .abbreviated, time: .omitted)) - \((period.endDate).formatted(date: .abbreviated, time: .omitted))")
                         }
                     }
                     .onDelete { indexSet in

@@ -15,22 +15,32 @@ struct AddEntryView: View {
     
     @StateObject var viewModel: AddEntryViewModel = AddEntryViewModel()
     
+    @FocusState private var focusedField: Field?
+    
     var body: some View {
         VStack {
             Form {
-                TextField("Value", text: $viewModel.value)
-                    .keyboardType(.numbersAndPunctuation)
-                DatePicker("Date", selection: $viewModel.date, in: (period.startDate ?? Date())...(period.endDate ?? Date()), displayedComponents: .date)
+                NumericTextField(text: $viewModel.value, placeholder: String(localized: "entryValuePlaceholder"))
+                    .focused($focusedField, equals: .first)
+                DatePicker("entryDateDescription", selection: $viewModel.date, in: (period.startDate)...(period.endDate), displayedComponents: .date)
             }
-            Button {
-                viewModel.saveEntry()
-                dismiss()
-            } label: {
-                Text("Save Entry")
-            }
+            
+            SaveAndCloseBtns(closeAction: dismiss, save: viewModel.saveEntry)
         }
         .onAppear {
             viewModel.setPeriod(period: period)
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Spacer()
+            }
+            ToolbarItem(placement: .keyboard) {
+                Button {
+                    focusedField = nil
+                } label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+            }
         }
     }
 }

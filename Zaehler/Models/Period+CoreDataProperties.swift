@@ -16,12 +16,12 @@ extension Period {
         return NSFetchRequest<Period>(entityName: "Period")
     }
 
-    @NSManaged public var endDate: Date?
+    @NSManaged public var endDate: Date
     @NSManaged public var fixPrice: Double
     @NSManaged public var fixPriceInterval: String?
-    @NSManaged public var startDate: Date?
+    @NSManaged public var startDate: Date
     @NSManaged public var unitPrice: Double
-    @NSManaged public var unitType: String?
+    @NSManaged public var unitType: String
     @NSManaged public var meter: Meter?
     @NSManaged public var entries: NSSet?
     
@@ -32,12 +32,9 @@ extension Period {
     }
     
     func getWholeConsumption() -> Double {
-        print(entriesArray)
-        print(self.entriesArray.count)
         guard let first = entriesArray.first, let last = entriesArray.last else { return 0.0 }
         
         let sum = first.value - last.value
-        print("Sum of WholeConsumption: \(sum)")
         return sum
         
     }

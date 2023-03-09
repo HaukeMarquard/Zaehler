@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  Zaehler
+
+  Created by Hauke Marquard on 08.03.23.
+  
+*/
+
+"buttonClose" = "Close";
+"buttonSave" = "Save";
+
+// Period
+
+"periodSectionHeader" = "Periodios";
+"periodBegin" = "Start";
+"periodEnd" = "End";
+"fixPriceSectionHeader" = "Fix Price";
+"fixPriceToggle" = "Contains Fix Prices";
+"fixPriceValuePlaceholder" = "Price";
+"consumptionSectionHeader" = "Consumption";
+"consumptionValuePlaceholder" = "Price per Unit";
+
+// PeriodListView
+
+"actualPeriodSectionHeader" = "Actual Period(s)";
+"otherPeriodSecitonHeader" = "Other Periods";
+
+// PeriodDetailView
+
+"dailyAverage" = "Daily Average";
+"totalConsumption" = "Total consumption";
+"totalPrice" = "Total price: %@";
+"pricePerMonth" = "Price per Month";
+"entriesTitle" = "Entries";
+
+// Entry
+
+"entryValuePlaceholder" = "Value";
+"entryDateDescription" = "Date";
+
+// Meter
+
+"meterListTitle" = "Meter";
+"buttonDeleteMeter" = "Delete Meter";
+
+"currentPeriod" = "Current Period: %@ - %@";
+"noCurrentPeriod" = "No current Period created";
+
+// Date Formats
+
+"date_Format" = "MMM dd, yyyy";
+"date_Format_Chart" = "M/d";

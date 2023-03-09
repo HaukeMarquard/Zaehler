@@ -15,6 +15,13 @@ struct MeterCardView: View {
     
     var meter: Meter
     
+    let dateFormatter = DateFormatter()
+    let myDate = Date()
+    let myLocalizedStringKey = "date_Format"
+    
+    @State var startDateFormatted: String = ""
+    @State var endDateFormatted: String = ""
+    
 //    init(name: String, icon: String, meter: Meter) {
 //        self.meter = meter
 //        self.name = name
@@ -37,23 +44,25 @@ struct MeterCardView: View {
                     Text(meter.name ?? "")
                         .font(.title)
                         .foregroundColor(.primary)
-                    if let startDate = getCurrentPeriod()?.startDate, let endDate = getCurrentPeriod()?.endDate {
-                        Text("Aktueller Zeitraum: \(startDate.formatted(date: .abbreviated, time: .omitted)) - \(endDate.formatted(date: .abbreviated, time: .omitted))")
+                    if let _ = getCurrentPeriod()?.startDate, let _ = getCurrentPeriod()?.endDate {
+                        Text(String(format: NSLocalizedString("currentPeriod", comment: ""), startDateFormatted, endDateFormatted))
                             .font(.footnote)
                             .foregroundColor(.secondary)
                     } else {
-                        Text("Kein aktueller Zeitraum hinterlegt.")
+                        Text("noCurrentPeriod")
                             .font(.footnote)
                             .foregroundColor(.secondary)
                     }
-                    // MARK: Alter Text zur anzeige.
-    //                Text("Aktueller Zeitraum: \((getCurrentPeriod()?.startDate ?? Date()).formatted(date: .abbreviated, time: .omitted)) - \((getCurrentPeriod()?.endDate ?? Date()).formatted(date: .abbreviated, time: .omitted))")
-    //                    .font(.footnote)
-    //                    .foregroundColor(.secondary)
                 }
                 Spacer()
             }
             .padding()
+        }
+        .onAppear {
+            dateFormatter.dateFormat = NSLocalizedString(myLocalizedStringKey, comment: "")
+            startDateFormatted = dateFormatter.string(from: getCurrentPeriod()?.startDate ?? Date())
+            endDateFormatted = dateFormatter.string(from: getCurrentPeriod()?.endDate ?? Date())
+            
         }
         .background(Color("ListItem"))
         .cornerRadius(15)

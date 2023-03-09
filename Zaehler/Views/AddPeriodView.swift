@@ -6,29 +6,32 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AddPeriodView: View {
     
     @StateObject var viewModel: AddPeriodViewModel = AddPeriodViewModel()
     
+    let fixedPriceValuePlaceholder = LocalizedStringKey("fixPriceValuePlaceholder")
+    
     @Environment(\.dismiss) var dismiss
     
-    var meter: Meter
+    @FocusState private var focusedField: Field?
     
-    @State private var containsFixPrice: Bool = true
+    var meter: Meter    
     
     var body: some View {
         VStack {
             Form {
-                Section("Zeitraum") {
-                    DatePicker("Start", selection: $viewModel.startDate, displayedComponents:  .date)
-                    DatePicker("End", selection: $viewModel.endDate, displayedComponents: .date)
+                Section("periodSectionHeader") {
+                    DatePicker("periodBegin", selection: $viewModel.startDate, displayedComponents:  .date)
+                    DatePicker("periodEnd", selection: $viewModel.endDate, displayedComponents: .date)
                 }
-                Section("Fix Price") {
-                    Toggle(isOn: $containsFixPrice) {
-                        Text("Fix Price")
+                Section(LocalizedStringKey("fixPriceSectionHeader")) {
+                    Toggle(isOn: $viewModel.containsFixPrice) {
+                        Text(LocalizedStringKey("fixPriceToggle"))
                     }
-                    if containsFixPrice {
+                    if viewModel.containsFixPrice {
                         Picker(selection: $viewModel.fixPriceInterval, label: Text("Interval")) {
                             ForEach(FixPriceInterval.allCases, id: \.rawValue) { interval in
                                 Text(interval.rawValue).tag(interval)
@@ -36,13 +39,15 @@ struct AddPeriodView: View {
                         }
                         .pickerStyle(.segmented)
                         
-                        TextField("Price", text: $viewModel.fixPrice)
-                            .keyboardType(.numbersAndPunctuation)
+                        NumericTextField(text: $viewModel.fixPrice, placeholder: String(localized: "fixPriceValuePlaceholder"))
+                            .focused($focusedField, equals: .first)
                     }
                 }
-                Section("Consuming") {
-                    TextField("Price per Unit", text: $viewModel.unitPrice)
-                        .keyboardType(.numbersAndPunctuation)
+                Section("consumptionSectionHeader") {
+                    NumericTextField(text: $viewModel.unitPrice, placeholder: String(localized: "consumptionValuePlaceholder"))
+                        .focused($focusedField, equals: .second)
+//                    TextField("Price per Unit", text: $viewModel.unitPrice)
+//                        .keyboardType(.numbersAndPunctuation)
                     Picker(selection: $viewModel.unitType, label: Text("Unit")) {
                         ForEach(UnitType.allCases, id: \.rawValue) { unit in
                             Text(unit.rawValue).tag(unit)
@@ -52,21 +57,25 @@ struct AddPeriodView: View {
                 }
                 
             }
-            HStack(alignment: .center) {
-                Button {
-                    viewModel.savePeriod()
-                    dismiss()
-                } label: {
-                    Text("Add Period")
-                }
-                .padding()
-                
-            }
+            SaveAndCloseBtns(closeAction: dismiss, save: viewModel.savePeriod)
         }
         .onAppear {
             viewModel.setMeter(meter: meter)
         }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Spacer()
+            }
+            ToolbarItem(placement: .keyboard) {
+                Button {
+                    focusedField = nil
+                } label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+            }
+        }
     }
+    
 }
 
 //struct AddPeriodView_Previews: PreviewProvider {
@@ -74,3 +83,6 @@ struct AddPeriodView: View {
 //        AddPeriodView()
 //    }
 //}
+
+
+

@@ -63,24 +63,7 @@ struct AddMeterView: View {
                 }
             }
             
-            HStack {
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Label("Dismiss", systemImage: "xmark")
-                }.buttonStyle(.bordered)
-                    .tint(.red)
-                Spacer()
-                Button {
-                    viewModel.save()
-                    dismiss()
-                } label: {
-                    Label("Save", systemImage: "checkmark")
-                }.buttonStyle(.bordered)
-                    .tint(.green)
-                Spacer()
-            }
+            SaveAndCloseBtns(closeAction: dismiss, save: viewModel.save)
             .padding(.top)
             
             

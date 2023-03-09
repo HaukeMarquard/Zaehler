@@ -25,8 +25,10 @@ class AddPeriodViewModel: ObservableObject {
     @Published var endDate: Date = Date()
     @Published var unitPrice: String = ""
     @Published var unitType: UnitType = .kwh
-    @Published var fixPriceInterval: FixPriceInterval = .monthly
+    @Published var fixPriceInterval: FixPriceInterval? = .monthly
     @Published var fixPrice: String = ""
+    
+    @Published var containsFixPrice: Bool = true
     
     var meter: Meter?
     
@@ -44,7 +46,12 @@ class AddPeriodViewModel: ObservableObject {
         newPeriod.endDate = endDate
         newPeriod.unitPrice = Double(unitPrice) ?? 0.0
         newPeriod.unitType = unitType.rawValue
-        newPeriod.fixPriceInterval = fixPriceInterval.rawValue
+        if containsFixPrice {
+            newPeriod.fixPriceInterval = fixPriceInterval?.rawValue
+        } else {
+            newPeriod.fixPriceInterval = nil
+        }
+        
         newPeriod.fixPrice = Double(fixPrice) ?? 0.0
         
         meter?.addToPeriods(newPeriod)
