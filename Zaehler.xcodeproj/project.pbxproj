@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A85F744B29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */; };
+		A85F744D29B9E90C00BAA5A6 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744C29B9E90C00BAA5A6 /* Formatter.swift */; };
 		A875188029B7708400E7528B /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875187F29B7708400E7528B /* NumericTextField.swift */; };
 		A875188229B78AD300E7528B /* Buton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875188129B78AD300E7528B /* Buton+Extensions.swift */; };
 		A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndCloseBtns.swift; sourceTree = "<group>"; };
+		A85F744C29B9E90C00BAA5A6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A875187F29B7708400E7528B /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A875188129B78AD300E7528B /* Buton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buton+Extensions.swift"; sourceTree = "<group>"; };
 		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				A875188129B78AD300E7528B /* Buton+Extensions.swift */,
 				A8FAC94529B8BE3900B58B48 /* KeyboardFunctionality.swift */,
 				A8FAC94729B8D16100B58B48 /* Currency.swift */,
+				A85F744C29B9E90C00BAA5A6 /* Formatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				A8B6444229A7C19800D1E349 /* Meter+CoreDataProperties.swift in Sources */,
 				A875188229B78AD300E7528B /* Buton+Extensions.swift in Sources */,
 				A8B6443629A7C11100D1E349 /* MeterListView.swift in Sources */,
+				A85F744D29B9E90C00BAA5A6 /* Formatter.swift in Sources */,
 				A8B6441F29A7C01200D1E349 /* ZaehlerApp.swift in Sources */,
 				A8FAC94829B8D16100B58B48 /* Currency.swift in Sources */,
 				A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */,

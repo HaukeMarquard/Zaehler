@@ -182,13 +182,23 @@ struct PeriodDetailView: View {
             ForEach(entries.indices, id: \.self) { index in
                 if index > 0 {
                     let showValue = calculateAverage(higherDate: entries[index].date, lowerDate: entries[index - 1].date, higherValue: entries[index].value, lowerValue: entries[index - 1].value)
-                    LineMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                    let calendar = Calendar.current
+                    let day = calendar.component(.day, from: entries[index].date)
+                    let month = calendar.component(.month, from: entries[index].date)
+                    LineMark(x: .value("Day", "\(day).\(month)"), y: .value("Value", showValue), series: .value("Year", "2023"))
                         .cornerRadius(10)
                         .interpolationMethod(.catmullRom)
-                    AreaMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+                    AreaMark(x: .value("Day", "\(day).\(month)"), y: .value("Value", showValue), series: .value("Year", "2023"))
                         .cornerRadius(10)
                         .interpolationMethod(.catmullRom)
                         .foregroundStyle(Color.accentColor.opacity(0.1).gradient)
+//                    LineMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+//                        .cornerRadius(10)
+//                        .interpolationMethod(.catmullRom)
+//                    AreaMark(x: .value("Day", entries[index].date.formatted(date: .numeric, time: .omitted)), y: .value("Value", showValue), series: .value("Year", "2023"))
+//                        .cornerRadius(10)
+//                        .interpolationMethod(.catmullRom)
+//                        .foregroundStyle(Color.accentColor.opacity(0.1).gradient)
                         
                 }
             }
