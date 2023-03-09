@@ -23,18 +23,22 @@ struct MeterListView: View {
                                 PeriodListView(meter: meter)
                             } label: {
                                 MeterCardView(meter: meter)
+                                    .padding(.horizontal)
                                     .contextMenu {
                                         deleteButton(meter: meter)
                                     }
+                                    
                             }
                         } else {
                             NavigationLink {
                                 PeriodListView(meter: meter)
                             } label: {
                                 MeterCardView(meter: meter)
+                                    .padding(.horizontal)
                                     .contextMenu {
                                         deleteButton(meter: meter)
                                     }
+                                    
                             }
                         }
                     }

@@ -68,7 +68,7 @@ struct MeterCardView: View {
         .cornerRadius(15)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .strokeBorder(.linearGradient(colors: [.clear, .accentColor.opacity(0.45), .clear, .accentColor.opacity(0.45), .clear], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .strokeBorder(.linearGradient(colors: [.clear, .white.opacity(0.45), .clear, .white.opacity(0.45)], startPoint: .topLeading, endPoint: .bottomTrailing))
         )
     }
     
