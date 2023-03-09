@@ -12,8 +12,6 @@ struct AddPeriodView: View {
     
     @StateObject var viewModel: AddPeriodViewModel = AddPeriodViewModel()
     
-    let fixedPriceValuePlaceholder = LocalizedStringKey("fixPriceValuePlaceholder")
-    
     @Environment(\.dismiss) var dismiss
     
     @FocusState private var focusedField: Field?
@@ -24,8 +22,8 @@ struct AddPeriodView: View {
         VStack {
             Form {
                 Section("periodSectionHeader") {
-                    DatePicker("periodBegin", selection: $viewModel.startDate, displayedComponents:  .date)
-                    DatePicker("periodEnd", selection: $viewModel.endDate, displayedComponents: .date)
+                    DatePicker("periodBegin", selection: $viewModel.startDate ,displayedComponents:  .date)
+                    DatePicker("periodEnd", selection: $viewModel.endDate, in: (viewModel.startDate)... ,displayedComponents: .date)
                 }
                 Section(LocalizedStringKey("fixPriceSectionHeader")) {
                     Toggle(isOn: $viewModel.containsFixPrice) {
@@ -46,8 +44,6 @@ struct AddPeriodView: View {
                 Section("consumptionSectionHeader") {
                     NumericTextField(text: $viewModel.unitPrice, placeholder: String(localized: "consumptionValuePlaceholder"))
                         .focused($focusedField, equals: .second)
-//                    TextField("Price per Unit", text: $viewModel.unitPrice)
-//                        .keyboardType(.numbersAndPunctuation)
                     Picker(selection: $viewModel.unitType, label: Text("Unit")) {
                         ForEach(UnitType.allCases, id: \.rawValue) { unit in
                             Text(unit.rawValue).tag(unit)
