@@ -29,7 +29,6 @@ struct NumericTextField: View {
                     self.text = String(newValue.dropLast())
                 }
             }
-        Text(text)
     }
 }
 

@@ -19,6 +19,8 @@ struct PeriodListView: View {
     
     @FetchRequest var otherPeriods: FetchedResults<Period>
     
+    @State var showEdit: Bool = false
+    
     init(meter: Meter) {
         self.meter = meter
         
@@ -73,11 +75,28 @@ struct PeriodListView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
+                infoButton()
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
                 addButton()
             }
         }
         .navigationTitle(meter.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showEdit, onDismiss: {
+            print("Dismiss")
+        }, content: {
+            EditMeterView(meter: meter)
+        })
+    }
+    
+    @ViewBuilder
+    func infoButton() -> some View {
+        Button {
+            showEdit = true
+        } label : {
+            Image(systemName: "info.circle")
+        }
     }
     
     func getCurrentPeriod() -> Period? {

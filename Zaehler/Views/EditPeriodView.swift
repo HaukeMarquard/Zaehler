@@ -17,7 +17,8 @@ struct EditPeriodView: View {
     @State var unitPrice: String = ""
     @State var fixPrice: String = ""
     @State var containsFixPrice: Bool = false
-    @State var fixPriceInterval: String = FixPriceInterval.monthly.rawValue
+//    @State var fixPriceInterval: String = FixPriceInterval.monthly.rawValue
+    @State var fixPriceInterval: FixPriceInterval = FixPriceInterval.monthly
     @State var unitType: UnitType = UnitType.kwh
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
@@ -65,9 +66,11 @@ struct EditPeriodView: View {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
             unitPrice = formatter.string(from: NSNumber(value: period.unitPrice)) ?? "0"
-//            unitPrice = "\(period.unitPrice)"
             unitType = UnitType(rawValue: period.unitType) ?? .kwh
             fixPrice = formatter.string(from: NSNumber(value: period.fixPrice)) ?? "0"
+            if period.fixPriceInterval != nil {
+                fixPriceInterval = FixPriceInterval(rawValue: period.fixPriceInterval ?? "") ?? .monthly
+            }
             containsFixPrice = period.fixPriceInterval != nil
             startDate = period.startDate
             endDate = period.endDate
@@ -78,7 +81,7 @@ struct EditPeriodView: View {
     
     func savePeriod() {
         if containsFixPrice {
-            period.fixPriceInterval = fixPriceInterval
+            period.fixPriceInterval = fixPriceInterval.rawValue
             period.fixPrice = Double(fixPrice.replacingOccurrences(of: ",", with: ".")) ?? 0.0
         }
         period.unitPrice = Double(unitPrice.replacingOccurrences(of: ",", with: ".")) ?? 0.0

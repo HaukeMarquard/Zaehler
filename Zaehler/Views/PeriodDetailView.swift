@@ -242,8 +242,26 @@ struct PeriodDetailView: View {
         let tagesVerbrauch = viewModel.daylyConsumption
         let tageZwischenDaten = daysBetweenDates()
         let monate = monthsBetweenDates()
+        let unitPricePerMonth = (tagesVerbrauch * Double(tageZwischenDaten) * period.unitPrice) / Double(monate)
         
-        return (tagesVerbrauch * Double(tageZwischenDaten) * period.unitPrice) / Double(monate)
+        var fixPricePerMonth: Double = 0.0
+        if period.fixPriceInterval != nil {
+            let fixPricePeriod = FixPriceInterval(rawValue: period.fixPriceInterval ?? "")
+            switch fixPricePeriod {
+            case .monthly:
+                fixPricePerMonth = period.fixPrice
+            case .quarterly:
+                fixPricePerMonth = period.fixPrice / 3
+            case .halfYearly:
+                fixPricePerMonth = period.fixPrice / 6
+            case .yearly:
+                fixPricePerMonth = period.fixPrice / 12
+            case .none:
+                fixPricePerMonth = 0.0
+            }
+        }
+        
+        return unitPricePerMonth + fixPricePerMonth
     }
     
     func monthsBetweenDates() -> Int {

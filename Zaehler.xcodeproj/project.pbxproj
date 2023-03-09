@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A85F744B29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */; };
 		A85F744D29B9E90C00BAA5A6 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744C29B9E90C00BAA5A6 /* Formatter.swift */; };
+		A85F744F29BA04F900BAA5A6 /* EditMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F744E29BA04F900BAA5A6 /* EditMeterView.swift */; };
 		A875188029B7708400E7528B /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875187F29B7708400E7528B /* NumericTextField.swift */; };
 		A875188229B78AD300E7528B /* Buton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875188129B78AD300E7528B /* Buton+Extensions.swift */; };
 		A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndCloseBtns.swift; sourceTree = "<group>"; };
 		A85F744C29B9E90C00BAA5A6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		A85F744E29BA04F900BAA5A6 /* EditMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMeterView.swift; sourceTree = "<group>"; };
 		A875187F29B7708400E7528B /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A875188129B78AD300E7528B /* Buton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buton+Extensions.swift"; sourceTree = "<group>"; };
 		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				A8B6444B29A8894000D1E349 /* Components */,
 				A8B6444C29A88A5600D1E349 /* AddPeriodView.swift */,
+				A8DFD3CB29B64181007C18E1 /* AddMeterView.swift */,
 				A889E8BD29A8AFC600D0C6B7 /* AddEntryView.swift */,
 				A881C3CC29AA9CC500EB7086 /* EditEntryView.swift */,
 				A8FAC93A29B89FA500B58B48 /* EditPeriodView.swift */,
@@ -159,7 +162,7 @@
 				A881C3CA29AA740E00EB7086 /* MeterCardView.swift */,
 				A8B6444529A7C67C00D1E349 /* PeriodListView.swift */,
 				A889E8AD29A8AC1700D0C6B7 /* PeriodDetailView.swift */,
-				A8DFD3CB29B64181007C18E1 /* AddMeterView.swift */,
+				A85F744E29BA04F900BAA5A6 /* EditMeterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				A881C3C929A92B4D00EB7086 /* Date+Extensions.swift in Sources */,
 				A881C3CD29AA9CC500EB7086 /* EditEntryView.swift in Sources */,
 				A8DFD3CC29B64181007C18E1 /* AddMeterView.swift in Sources */,
+				A85F744F29BA04F900BAA5A6 /* EditMeterView.swift in Sources */,
 				A8B6444129A7C19800D1E349 /* Meter+CoreDataClass.swift in Sources */,
 				A8FAC94629B8BE3900B58B48 /* KeyboardFunctionality.swift in Sources */,
 				A881C3CB29AA740E00EB7086 /* MeterCardView.swift in Sources */,

@@ -52,7 +52,6 @@ struct EditEntryView: View {
     }
     
     func saveEntry() {
-        print(value)
         entry.value = Double(value.replacingOccurrences(of: ",", with: ".")) ?? 0.0
         entry.date = date
         PersistenceController.shared.save()
