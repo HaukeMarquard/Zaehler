@@ -34,7 +34,7 @@ struct EditEntryView: View {
             SaveAndCloseBtns(closeAction: dismiss, save: saveEntry)
         }
         .onAppear {
-            value = "\(entry.value)"
+            value = doubleToString(entry.value)
             date = entry.date
         }
         .toolbar {
@@ -52,7 +52,8 @@ struct EditEntryView: View {
     }
     
     func saveEntry() {
-        entry.value = Double(value) ?? 0.0
+        print(value)
+        entry.value = Double(value.replacingOccurrences(of: ",", with: ".")) ?? 0.0
         entry.date = date
         PersistenceController.shared.save()
     }
