@@ -47,6 +47,7 @@
 		A85F744A29B9DDFC00BAA5A6 /* SaveAndCloseBtns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndCloseBtns.swift; sourceTree = "<group>"; };
 		A85F744C29B9E90C00BAA5A6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A85F744E29BA04F900BAA5A6 /* EditMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMeterView.swift; sourceTree = "<group>"; };
+		A85F745029BA111300BAA5A6 /* MeterTrack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeterTrack.entitlements; sourceTree = "<group>"; };
 		A875187F29B7708400E7528B /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A875188129B78AD300E7528B /* Buton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buton+Extensions.swift"; sourceTree = "<group>"; };
 		A881C3C829A92B4D00EB7086 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -60,7 +61,7 @@
 		A889E8BA29A8ADED00D0C6B7 /* Period+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A889E8BD29A8AFC600D0C6B7 /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 		A889E8BF29A8AFD200D0C6B7 /* AddEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewModel.swift; sourceTree = "<group>"; };
-		A8B6441B29A7C01200D1E349 /* Zaehler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zaehler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8B6441B29A7C01200D1E349 /* MeterTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeterTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B6441E29A7C01200D1E349 /* ZaehlerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZaehlerApp.swift; sourceTree = "<group>"; };
 		A8B6442229A7C01300D1E349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8B6442529A7C01300D1E349 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		A8B6441229A7C01200D1E349 = {
 			isa = PBXGroup;
 			children = (
+				A85F745029BA111300BAA5A6 /* MeterTrack.entitlements */,
 				A8B6441D29A7C01200D1E349 /* Zaehler */,
 				A8B6441C29A7C01200D1E349 /* Products */,
 			);
@@ -118,7 +120,7 @@
 		A8B6441C29A7C01200D1E349 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A8B6441B29A7C01200D1E349 /* Zaehler.app */,
+				A8B6441B29A7C01200D1E349 /* MeterTrack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A8B6441A29A7C01200D1E349 /* Zaehler */ = {
+		A8B6441A29A7C01200D1E349 /* MeterTrack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A8B6442F29A7C01300D1E349 /* Build configuration list for PBXNativeTarget "Zaehler" */;
+			buildConfigurationList = A8B6442F29A7C01300D1E349 /* Build configuration list for PBXNativeTarget "MeterTrack" */;
 			buildPhases = (
 				A8B6441729A7C01200D1E349 /* Sources */,
 				A8B6441829A7C01200D1E349 /* Frameworks */,
@@ -215,9 +217,9 @@
 			);
 			dependencies = (
 			);
-			name = Zaehler;
+			name = MeterTrack;
 			productName = Zaehler;
-			productReference = A8B6441B29A7C01200D1E349 /* Zaehler.app */;
+			productReference = A8B6441B29A7C01200D1E349 /* MeterTrack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -249,7 +251,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A8B6441A29A7C01200D1E349 /* Zaehler */,
+				A8B6441A29A7C01200D1E349 /* MeterTrack */,
 			);
 		};
 /* End PBXProject section */
@@ -440,27 +442,32 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MeterTrack.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Zaehler/Preview Content\"";
 				DEVELOPMENT_TEAM = C696PR9P5C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MeterTrack;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.marquard.Zaehler;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.marquard.MeterTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -469,27 +476,32 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MeterTrack.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Zaehler/Preview Content\"";
 				DEVELOPMENT_TEAM = C696PR9P5C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MeterTrack;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.marquard.Zaehler;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.marquard.MeterTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -505,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A8B6442F29A7C01300D1E349 /* Build configuration list for PBXNativeTarget "Zaehler" */ = {
+		A8B6442F29A7C01300D1E349 /* Build configuration list for PBXNativeTarget "MeterTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A8B6443029A7C01300D1E349 /* Debug */,

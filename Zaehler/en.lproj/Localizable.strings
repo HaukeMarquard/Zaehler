@@ -23,7 +23,7 @@
 // PeriodListView
 
 "actualPeriodSectionHeader" = "Actual Period(s)";
-"otherPeriodSecitonHeader" = "Other Periods";
+"otherPeriodSectionHeader" = "Other Periods";
 
 // PeriodDetailView
 

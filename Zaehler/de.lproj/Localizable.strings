@@ -23,7 +23,7 @@
 // PeriodListView
 
 "actualPeriodSectionHeader" = "Aktuelle Periode(n)";
-"otherPeriodSecitonHeader" = "Andere Perioden";
+"otherPeriodSectionHeader" = "Andere Perioden";
 
 // PeriodDetailView
 
